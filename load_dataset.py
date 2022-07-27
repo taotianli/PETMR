@@ -13,8 +13,7 @@ class MyDataset(DGLDataset):
                  raw_dir=None,
                  save_dir=None,
                  force_reload=False,
-                 verbose=False,
-                 global_only=True):
+                 verbose=False):
         super(MyDataset, self).__init__(name='dataset_name',
                                         url=url,
                                         raw_dir=raw_dir,
@@ -23,9 +22,13 @@ class MyDataset(DGLDataset):
                                         verbose=verbose)
 
     def process(self):
-
         self.graphs = []
         self.labels = []
+        if global_only:
+            pass
+        else:
+            pass
+
 
 
     def __getitem__(self, idx):
@@ -36,6 +39,7 @@ class MyDataset(DGLDataset):
 
 
 threshold = 0.8
+global_only = True
 os.chdir("D:\CHB seizure\GIH data")
 with open("D:\CHB seizure\GIH data\path.txt", "r") as f:
     data = f.readlines()
