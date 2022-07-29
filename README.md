@@ -38,7 +38,7 @@ conda install --yes --file requirements.txt
 
 ## Authors
 
-* **Tianli Tao** - *Initial work* 
+* **Tianli Tao @ShanghaiTech University** - *Initial work* 
 
 
 ## Acknowledgments
