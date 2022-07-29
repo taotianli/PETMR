@@ -1,7 +1,7 @@
 import torch
 import dgl
 import numpy as np
-from loading_data import loading_feature
+from loading_brain_region_data import loading_feature
 from dgl.nn.pytorch import pairwise_squared_distance
 from typing import List, Tuple
 import math

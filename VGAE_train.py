@@ -11,7 +11,7 @@ import torch.nn.functional as F
 
 import model
 from preprocess import mask_test_edges, mask_test_edges_dgl, sparse_to_tuple, preprocess_graph
-from loading_data import loading_feature
+from loading_brain_region_data import loading_feature
 from local_graph_construction import reading_brain_region
 
 """

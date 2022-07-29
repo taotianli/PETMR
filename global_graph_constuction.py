@@ -41,4 +41,4 @@ def concat_global_graph(global_graph, global_feature, label):
 root_path = 'D:/Down/Output/subjects/sub-02'
 global_feas = loading_global_graph(root_path)
 global_matrix = torch.topk(pairwise_squared_distance(global_feas).to(torch.float32), 5, 1, largest=False).values
-glo_graph = concat_global_local_graph(global_matrix,global_feas, 1)
+glo_graph = concat_global_local_graph(global_matrix, global_feas, 1)
