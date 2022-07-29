@@ -38,7 +38,19 @@ def concat_global_graph(global_graph, global_feature, label):
     return knn_g
 
 
-root_path = 'D:/Down/Output/subjects/sub-02'
-global_feas = loading_global_graph(root_path)
-global_matrix = torch.topk(pairwise_squared_distance(global_feas).to(torch.float32), 5, 1, largest=False).values
-glo_graph = concat_global_local_graph(global_matrix, global_feas, 1)
+def traverse_all_global_graph_feature(sub_root_path, knn_node_num):
+    global_feature_list = list()
+    global_graph_list = list()
+    for sub in glob.glob(sub_root_path):
+        global_feas = loading_global_graph(sub)
+        global_matrix = torch.topk(pairwise_squared_distance(global_feas).to(torch.float32), knn_node_num, 1, largest=False).values
+        global_graph = concat_global_local_graph(global_matrix, global_feas, 1)
+        global_feature_list.append()
+        global_graph_list.append(global_graph)
+    return global_graph_list, global_graph_list
+
+
+# root_path = 'D:/Down/Output/subjects/sub-02'
+# global_feas = loading_global_graph(root_path)
+# global_matrix = torch.topk(pairwise_squared_distance(global_feas).to(torch.float32), 5, 1, largest=False).values
+# glo_graph = concat_global_local_graph(global_matrix, global_feas, 1)

@@ -1,3 +1,5 @@
+import glob
+
 import torch
 import dgl
 import numpy as np
@@ -69,7 +71,7 @@ def reading_brain_region(node_feats, knn: int):
     counter = 0
     feature_matrix_dict = dict()
     node_coor_dict = dict()
-    for i in range(5):#annot 标签从-1到35
+    for i in range(35):#annot 标签从-1到35
         # feature shape (# of vertex number, # of feature)
         brain_region_data = feature[counter:counter+np.sum(feature == i - 1),:]
         avg_brain_region_data = np.average(brain_region_data, axis=0)
@@ -111,6 +113,6 @@ def reading_brain_region(node_feats, knn: int):
 # rh_feature_dict, rh_node_coor_dict = reading_brain_region(rh_feature, knn=5)
 # print(lh_feature_dict[1].edges(), rh_feature_dict[1].edata)
 
-root_path = 'D:/Down/Output/subjects/sub-02'
-lh_feature, rh_feature = loading_feature(root_path)
-lh_feature_dict, kg = reading_brain_region(lh_feature, knn=5)
+# root_path = 'D:/Down/Output/subjects/sub-02'
+# lh_feature, rh_feature = loading_feature(root_path)
+# lh_feature_dict, kg = reading_brain_region(lh_feature, knn=5)
