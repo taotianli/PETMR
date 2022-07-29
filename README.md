@@ -1,4 +1,4 @@
-### Multiview Cortical Graph Isomorphism Network (MC-GIN) for MCI classification based on PET/MR sync data
+### Multiview Cortical Graph Isomorphism Network (MC-GIN) for MCI/NC classification based on PET/MR sync data
 
 
 ## Getting Started

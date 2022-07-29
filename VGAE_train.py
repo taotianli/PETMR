@@ -1,4 +1,5 @@
 import argparse
+import glob
 import os
 import time
 
@@ -76,7 +77,7 @@ def get_scores(edges_pos, edges_neg, adj_rec):
     return roc_score, ap_score
 
 
-def dgl_main():
+def dgl_main(data):
     # Load from DGL dataset
     # if args.dataset == 'cora':
     #     dataset = CoraGraphDataset(reverse_edge=False)
@@ -86,9 +87,6 @@ def dgl_main():
     #     dataset = PubmedGraphDataset(reverse_edge=False)
     # else:
     #     raise NotImplementedError
-    f_path = 'D:/Down/Output/subjects/sub-01' + '/ses-M00/t1/freesurfer_cross_sectional/sub-01_ses-M00'  # file root path
-    lh_feature, rh_feature = loading_feature(f_path)
-    dataset_dict, data = reading_brain_region(lh_feature, knn=5)
     graph = data
     # for k,v in dataset_dict:
     #     graph = dataset_dict[0]
@@ -162,6 +160,12 @@ def dgl_main():
     # ap_means.append(test_ap)
     print("End of training!", "test_roc=", "{:.5f}".format(test_roc), "test_ap=", "{:.5f}".format(test_ap))
 
-
+#
+# if __name__ == '__main__':
+#     dgl_main()
 if __name__ == '__main__':
-    dgl_main()
+    sub_root_path = 'D:/Down/Output/subjects'
+    for sub_path in glob.glob(sub_root_path):
+        lh_feature, rh_feature = loading_feature(sub_path)
+        dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
+        dgl_main(sub_data)
