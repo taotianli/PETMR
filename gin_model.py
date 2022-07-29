@@ -9,7 +9,7 @@ from matplotlib import pyplot as plt
 from sklearn.metrics import confusion_matrix
 from sklearn import metrics
 import sklearn
-
+import numpy 
 
 
 class MyDataset(DGLDataset):
