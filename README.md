@@ -43,14 +43,8 @@ Use *area under the ROC curve* (AUC) and *average precision* (AP) scores for eac
 ## Built With
 
 * [Clinica](http://www.clinica.run/) - The web framework used
-* [DGL]((https://github.com/dmlc/dgl/) - Dependency Management
+* [DGL](https://github.com/dmlc/dgl/) - Main framework
 
 
 ## Authors
-
 * **Tianli Tao @ShanghaiTech University** - *Initial work* 
-
-
-## Acknowledgments
-
-This project is completed under the guidance of Prof. Han Zhang.
