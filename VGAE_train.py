@@ -4,7 +4,6 @@ import os
 import time
 
 import dgl
-from dgl.data import CoraGraphDataset, CiteseerGraphDataset, PubmedGraphDataset
 import numpy as np
 from sklearn.metrics import roc_auc_score, average_precision_score
 import torch
@@ -14,6 +13,7 @@ import model
 from preprocess import mask_test_edges, mask_test_edges_dgl, sparse_to_tuple, preprocess_graph
 from loading_brain_region_data import loading_feature, loading_label
 from local_graph_construction import reading_brain_region
+from collections import defaultdict
 
 """
 重构函数 MyDataset、DataLoader
@@ -162,16 +162,17 @@ def dgl_main(data):
     print("End of training!", "test_roc=", "{:.5f}".format(test_roc), "test_ap=", "{:.5f}".format(test_ap))
     return hg
 
+
 #
 # if __name__ == '__main__':
 #     dgl_main()
-if __name__ == '__main__':
+def extract_all_local_feature(sub_root_path='D:/Down/Output/subjects'):
     # root_path = 'D:/Down/Output/subjects/sub-02'
     # lh_feature, rh_feature = loading_feature(root_path)
     # dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
     # dgl_main(sub_data)
-    sub_root_path = 'D:/Down/Output/subjects'
-    local_feature_dict = {}
+    local_feature_dict = defaultdict(list)
+    sub_info = loading_label()
     for sub_path in glob.glob(sub_root_path):
         temp_single_sub_feature = list()
         lh_feature, rh_feature = loading_feature(sub_path)
@@ -180,5 +181,5 @@ if __name__ == '__main__':
             sampled_z = dgl_main(sub_data_dict[i])
             temp_single_sub_feature.append(sampled_z)
         local_feature_dict[sub_path] = temp_single_sub_feature
-
-
+        # local_feature_dict[sub_path] = sub_info[sub_path]
+    return local_feature_dict

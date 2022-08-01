@@ -3,6 +3,7 @@ import pandas as pd
 import glob
 import numpy as np
 import torch
+from collections import defaultdict
 from dgl.nn.pytorch import pairwise_squared_distance
 
 
@@ -38,16 +39,16 @@ def concat_global_graph(global_graph, global_feature, label):
     return knn_g
 
 
-def traverse_all_global_graph_feature(sub_root_path, knn_node_num):
-    global_feature_list = list()
-    global_graph_list = list()
+def extract_all_global_graph_feature(sub_root_path='D:/Down/Output/subjects', knn_node_num=5):
+    global_graph_dict = defaultdict(list)
     for sub in glob.glob(sub_root_path):
         global_feas = loading_global_graph(sub)
         global_matrix = torch.topk(pairwise_squared_distance(global_feas).to(torch.float32), knn_node_num, 1, largest=False).values
         global_graph = concat_global_local_graph(global_matrix, global_feas, 1)
-        global_feature_list.append()
-        global_graph_list.append(global_graph)
-    return global_graph_list, global_graph_list
+        global_graph_dict[sub].append(global_feas)
+        global_graph_dict[sub].append(global_graph)
+    return global_graph_dict
+
 
 
 # root_path = 'D:/Down/Output/subjects/sub-02'
