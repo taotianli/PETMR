@@ -28,14 +28,14 @@ conda install --yes --file requirements.txt
 Use *area under the ROC curve* (AUC) and *average precision* (AP) scores for each model on the test set. Numbers show mean results and standard error for 10 runs with random initializations on fixed dataset splits.
 
 
-| Method | ACC  | SEN  | SPE  | AUC  |
-| ------ | ---- | ---- | ---- | ---- |
-| SVM    |      |      |      |      |
-| GCN    |      |      |      |      |
-| GAT    |      |      |      |      |
-| g-GIN  |      |      |      |      |
-| l-GIN  |      |      |      |      |
-| MC-GIN |      |      |      |      |
+| Method | ACC | SEN | SPE | AUC |
+|--------|-----|-----|-----|-----|
+| SVM    |     |     |     |     |
+| GCN    |     |     |     |     |
+| GAT    |     |     |     |     |
+| g-GIN  |     |     |     |     |
+| l-GIN  |     |     |     |     |
+| MC-GIN |     |     |     |     |
 
 
 

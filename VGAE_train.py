@@ -160,17 +160,18 @@ def dgl_main(data):
     # roc_means.append(test_roc)
     # ap_means.append(test_ap)
     print("End of training!", "test_roc=", "{:.5f}".format(test_roc), "test_ap=", "{:.5f}".format(test_ap))
+    return hg
 
 #
 # if __name__ == '__main__':
 #     dgl_main()
 if __name__ == '__main__':
-    root_path = 'D:/Down/Output/subjects/sub-02'
-    lh_feature, rh_feature = loading_feature(root_path)
-    dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
-    dgl_main(sub_data)
-    # sub_root_path = 'D:/Down/Output/subjects'
-    # for sub_path in glob.glob(sub_root_path):
-    #     lh_feature, rh_feature = loading_feature(sub_path)
-    #     dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
-    #     dgl_main(sub_data)
+    # root_path = 'D:/Down/Output/subjects/sub-02'
+    # lh_feature, rh_feature = loading_feature(root_path)
+    # dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
+    # dgl_main(sub_data)
+    sub_root_path = 'D:/Down/Output/subjects'
+    for sub_path in glob.glob(sub_root_path):
+        lh_feature, rh_feature = loading_feature(sub_path)
+        dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
+        sampled_z = dgl_main(sub_data)

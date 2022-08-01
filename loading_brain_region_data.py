@@ -69,10 +69,9 @@ def loading_feature(root_path):
     return lh_total_feature, rh_total_feature
 
 
-def loading_label(xlsx_path):
-    sub_df = pd.read_excel(xlsx_path, engine='openpyxl')  #读取病历信息
-    sub_list = pd.read_excel(xlsx_path, engine='openpyxl')
-    sub_info = dict(zip(sub_df['ID'], sub_df['Label']))
+def loading_label(csv_path='Sub_Diagnosis.csv'):
+    sub_df = pd.read_csv(csv_path)  #读取病历信息
+    sub_info = dict(zip(sub_df['sub_ID'], sub_df['label']))
     return sub_info
 
 
