@@ -12,7 +12,7 @@ import torch.nn.functional as F
 
 import model
 from preprocess import mask_test_edges, mask_test_edges_dgl, sparse_to_tuple, preprocess_graph
-from loading_brain_region_data import loading_feature
+from loading_brain_region_data import loading_feature, loading_label
 from local_graph_construction import reading_brain_region
 
 """
@@ -171,7 +171,14 @@ if __name__ == '__main__':
     # dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
     # dgl_main(sub_data)
     sub_root_path = 'D:/Down/Output/subjects'
+    local_feature_dict = {}
     for sub_path in glob.glob(sub_root_path):
+        temp_single_sub_feature = list()
         lh_feature, rh_feature = loading_feature(sub_path)
-        dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
-        sampled_z = dgl_main(sub_data)
+        sub_data_dict, sub_data = reading_brain_region(lh_feature, knn=5)
+        for i in range(35):
+            sampled_z = dgl_main(sub_data_dict[i])
+            temp_single_sub_feature.append(sampled_z)
+        local_feature_dict[sub_path] = temp_single_sub_feature
+
+
