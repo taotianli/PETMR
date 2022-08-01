@@ -75,7 +75,7 @@ def reading_brain_region(node_feats, knn: int):
         # feature shape (# of vertex number, # of feature)
         brain_region_data = feature[counter:counter+np.sum(feature == i - 1),:]
         avg_brain_region_data = np.average(brain_region_data, axis=0)
-        print(avg_brain_region_data.shape)
+        # print(avg_brain_region_data.shape)
         #使用correlation 建图
         # br_df = pd.DataFrame(brain_region_data)
         # counter += np.sum(feature == i - 1) + 1

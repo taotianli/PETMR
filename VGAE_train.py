@@ -102,15 +102,15 @@ def dgl_main(data):
     train_edge_idx, val_edges, val_edges_false, test_edges, test_edges_false = mask_test_edges_dgl(graph, adj_orig)
 
     graph = graph.to(device)
-    print(graph)
+    # print(graph)
 
     # create train graph
     train_edge_idx = torch.tensor(train_edge_idx).to(device)
     train_graph = dgl.edge_subgraph(graph, train_edge_idx, preserve_nodes=True)
     train_graph = train_graph.to(device)
-    print(train_graph)
+    # print(train_graph)
     adj = train_graph.adjacency_matrix().to_dense().to(device)
-    print(adj.size())
+    # print(adj.size())
 
     # compute loss parameters
     weight_tensor, norm = compute_loss_para(adj)
@@ -130,7 +130,8 @@ def dgl_main(data):
         # Training and validation using a full graph
         vgae_model.train()
 
-        logits = vgae_model.forward(graph, feats)
+        logits, hg = vgae_model.forward(graph, feats)
+        print("this is AE feature", hg)
 
         # compute loss
         print(logits.view(-1).size(), adj.view(-1).size(),adj.size(),logits.size())
@@ -164,8 +165,12 @@ def dgl_main(data):
 # if __name__ == '__main__':
 #     dgl_main()
 if __name__ == '__main__':
-    sub_root_path = 'D:/Down/Output/subjects'
-    for sub_path in glob.glob(sub_root_path):
-        lh_feature, rh_feature = loading_feature(sub_path)
-        dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
-        dgl_main(sub_data)
+    root_path = 'D:/Down/Output/subjects/sub-02'
+    lh_feature, rh_feature = loading_feature(root_path)
+    dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
+    dgl_main(sub_data)
+    # sub_root_path = 'D:/Down/Output/subjects'
+    # for sub_path in glob.glob(sub_root_path):
+    #     lh_feature, rh_feature = loading_feature(sub_path)
+    #     dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
+    #     dgl_main(sub_data)

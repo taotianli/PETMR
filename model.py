@@ -36,13 +36,13 @@ class VGAEModel(nn.Module):
 
     def forward(self, g, features):
         z = self.encoder(g, features)
-        print('This is the encoding feature', z.shape)
+        # print('This is the encoding feature', z.shape)
         hg = self.pool(g, z)
         hg = torch.tanh(hg)
-        print('This is the pooling feature', hg.shape)
+        # print('This is the pooling feature', hg.shape)
         # print('This is the dense feature', self.dense(hg).shape)
         adj_rec = self.decoder(z)
-        return adj_rec
+        return adj_rec, hg
 
 
 class GCN(nn.Module):

@@ -17,3 +17,4 @@ for k in sub_zs_info.keys():
     # print(k, sub_zs_info[k], sub_info[sub_zs_info[k]])
     writer.writerow([k, sub_info[sub_zs_info[k]]])
 csv_file.close()
+
