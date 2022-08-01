@@ -8,10 +8,12 @@ sub_list = pd.read_excel(sub_path, engine='openpyxl')
 sub_info = dict(zip(sub_df['ID'], sub_df['Label']))
 sub_zs_info = dict(zip(sub_list['sub_ID'], sub_list['zs_ID']))
 
-fileName = "D:/Down/PET_data/Sub_Diagnosis.csv"
+fileName = "Sub_Diagnosis.csv"
 ##保存文件
-with open(fileName, "wb") as csv_file:
-    writer = csv.writer(csv_file)
-    for k in sub_zs_info.keys():
-        print(k, sub_zs_info[k], sub_info[sub_zs_info[k]])
-        # writer.writerow([k, sub_info[sub_zs_info[k]]])
+csv_file = open(fileName, 'w', newline='', encoding='gbk')
+writer = csv.writer(csv_file)
+writer.writerow(['sub_ID', 'label'])
+for k in sub_zs_info.keys():
+    # print(k, sub_zs_info[k], sub_info[sub_zs_info[k]])
+    writer.writerow([k, sub_info[sub_zs_info[k]]])
+csv_file.close()
