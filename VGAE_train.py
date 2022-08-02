@@ -166,14 +166,16 @@ def dgl_main(data):
 #
 # if __name__ == '__main__':
 #     dgl_main()
-def extract_all_local_feature(sub_root_path='D:/Down/Output/subjects'):
+def extract_all_local_feature(sub_root_path='D:/Down/Output/subjects/*'):
     # root_path = 'D:/Down/Output/subjects/sub-02'
     # lh_feature, rh_feature = loading_feature(root_path)
     # dataset_dict, sub_data = reading_brain_region(lh_feature, knn=5)
     # dgl_main(sub_data)
+    print("Starting loading local feature!")
     local_feature_dict = defaultdict(list)
     sub_info = loading_label()
     for sub_path in glob.glob(sub_root_path):
+        print("extract all local feature:", sub_path)
         temp_single_sub_feature = list()
         lh_feature, rh_feature = loading_feature(sub_path)
         sub_data_dict, sub_data = reading_brain_region(lh_feature, knn=5)
@@ -182,4 +184,5 @@ def extract_all_local_feature(sub_root_path='D:/Down/Output/subjects'):
             temp_single_sub_feature.append(sampled_z)
         local_feature_dict[sub_path] = temp_single_sub_feature
         # local_feature_dict[sub_path] = sub_info[sub_path]
+        print('One Subject Finished!')
     return local_feature_dict

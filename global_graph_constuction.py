@@ -39,7 +39,8 @@ def concat_global_graph(global_graph, global_feature, label):
     return knn_g
 
 
-def extract_all_global_graph_feature(sub_root_path='D:/Down/Output/subjects', knn_node_num=5):
+def extract_all_global_graph_feature(sub_root_path='D:/Down/Output/subjects/*', knn_node_num=5):
+    print("Starting loading global feature!")
     global_graph_dict = defaultdict(list)
     for sub in glob.glob(sub_root_path):
         global_feas = loading_global_graph(sub)

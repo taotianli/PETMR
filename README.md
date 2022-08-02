@@ -38,7 +38,8 @@ Use *area under the ROC curve* (AUC) and *average precision* (AP) scores for eac
 | MC-GIN |     |     |     |     |
 
 
-
+## Hyperparameter
+特征种类、脑区数量
 
 ## Built With
 

@@ -3,8 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from dgl.nn.pytorch.glob import SumPooling, AvgPooling, MaxPooling
-
-from VGAE_train import device
+device = 'cpu'
 
 
 class VGAEModel(nn.Module):

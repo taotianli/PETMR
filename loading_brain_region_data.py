@@ -33,7 +33,6 @@ def loading_feature(root_path):
         lh_smoothwm = nib.freesurfer.io.read_morph_data(f_path + '/surf/lh.smoothwm')
         lh_inflated = nib.freesurfer.io.read_morph_data(f_path + '/surf/lh.inflated')
     """
-
     f_path = glob.glob(root_path + '/ses-M00/t1/freesurfer_cross_sectional/sub*')[0]
     print('feature path = ', f_path)
     lh_pet_data, rh_pet_data = reading_mgh(root_path)
@@ -65,7 +64,7 @@ def loading_feature(root_path):
     rh_area = nib.freesurfer.io.read_morph_data(f_path + '/surf/rh.area')
     rh_avg_curv = nib.freesurfer.io.read_morph_data(f_path + '/surf/rh.avg_curv')
     rh_total_feature = np.c_[rh_geo[0], rh_annot[0], rh_volume.T, rh_thickness.T, rh_sulc.T, rh_curv.T, rh_jacobian_white.T, rh_area.T, rh_avg_curv.T, rh_pet_data]
-
+    print("loading_feature root_path", root_path)
     return lh_total_feature, rh_total_feature
 
 
@@ -88,5 +87,5 @@ def loading_label(csv_path='Sub_Diagnosis.csv'):
 # # sub = loading_label(xlsx_path)
 # lh_data, rh_data = reading_mgh(root_path)
 
-root_path = 'D:/Down/Output/subjects/sub-02'
-lh_feature, rh_feature = loading_feature(root_path)
+# root_path = 'D:/Down/Output/subjects/sub-02'
+# lh_feature, rh_feature = loading_feature(root_path)
