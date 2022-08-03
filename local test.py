@@ -31,6 +31,10 @@ def reading_brain_region(node_feats, knn: int):
     print(feature.shape)#到底有多少个脑区，哪些脑区是没有东西的？是共性的吗？删掉unknown节点
     for i in range(37):#annot 标签从-1到35，前后保持一致
         brain_region_data = feature[counter:counter+np.sum(feature == i - 1),:]
+        if i-1 in feature[:,3]:
+            pass
+        else:
+            print(i-1)
         brain_data_torch = torch.from_numpy(brain_region_data)
         if brain_region_data.shape[0] != 0:
             knn_g = dgl.knn_graph(brain_data_torch, knn) #节点很多，应当适当增加节点数量
@@ -39,10 +43,11 @@ def reading_brain_region(node_feats, knn: int):
             feature_matrix_dict[i] = knn_g
             node_coor_dict[i] = pairwise_dists
         else:
-            print("Brain region %d", i-1)
+            pass
+            # print("Brain region %d", i-1)
             # feature_matrix_dict[i] = CoraGraphDataset(reverse_edge=False)[0]
         counter += np.sum(feature == i - 1) + 1
-        print(counter)
+        # print(counter)
     return feature_matrix_dict, knn_g
 
 
