@@ -75,7 +75,7 @@ def reading_brain_region(node_feats, knn: int):
     for i in range(35):#annot 标签从-1到35，前后保持一致
         # feature shape (# of vertex number, # of feature)
         brain_region_data = feature[counter:counter+np.sum(feature == i - 1),:]
-        avg_brain_region_data = np.average(brain_region_data, axis=0)
+        # avg_brain_region_data = np.average(brain_region_data, axis=0) #取平均的操作，用来做全局变量
         # print(avg_brain_region_data.shape)
         #使用correlation 建图
         # br_df = pd.DataFrame(brain_region_data)
