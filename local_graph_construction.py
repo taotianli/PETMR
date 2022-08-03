@@ -5,6 +5,7 @@ import dgl
 import numpy as np
 from loading_brain_region_data import loading_feature
 from dgl.nn.pytorch import pairwise_squared_distance
+from dgl.data import CoraGraphDataset
 from typing import List, Tuple
 import math
 
@@ -71,7 +72,7 @@ def reading_brain_region(node_feats, knn: int):
     counter = 0
     feature_matrix_dict = dict()
     node_coor_dict = dict()
-    for i in range(35):#annot 标签从-1到35
+    for i in range(35):#annot 标签从-1到35，前后保持一致
         # feature shape (# of vertex number, # of feature)
         brain_region_data = feature[counter:counter+np.sum(feature == i - 1),:]
         avg_brain_region_data = np.average(brain_region_data, axis=0)
@@ -84,7 +85,7 @@ def reading_brain_region(node_feats, knn: int):
         #使用dgl.knn建图，明确特征计算方法
         brain_data_torch = torch.from_numpy(brain_region_data)
         # ndata = feature
-        if brain_region_data.shape[0] !=0:
+        if brain_region_data.shape[0] != 0:
             knn_g = dgl.knn_graph(brain_data_torch, knn) #节点很多，应当适当增加节点数量
             # knn_g.edata['w'] = torch.tensor(edata).float()
             # print(graph.edata['w'].size())
@@ -99,7 +100,7 @@ def reading_brain_region(node_feats, knn: int):
             feature_matrix_dict[i] = knn_g
             node_coor_dict[i] = pairwise_dists
         else:
-            feature_matrix_dict[i] = None
+            feature_matrix_dict[i] = CoraGraphDataset(reverse_edge=False)[0]
         counter += np.sum(feature == i - 1) + 1
     # return feature_matrix_dict, node_coor_dict
     return feature_matrix_dict, knn_g
