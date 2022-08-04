@@ -12,7 +12,7 @@ class VGAEModel(nn.Module):
         self.in_dim = in_dim
         self.hidden1_dim = hidden1_dim
         self.hidden2_dim = hidden2_dim
-        print('hid_dim1 $ hid_dim2 = ',hidden2_dim,hidden1_dim)
+        # print('hid_dim1 $ hid_dim2 = ',hidden2_dim,hidden1_dim)
 
         layers = [GraphConv(self.in_dim, self.hidden1_dim, activation=F.relu, allow_zero_in_degree=True),
                   GraphConv(self.hidden1_dim, self.hidden2_dim, activation=lambda x: x, allow_zero_in_degree=True),

@@ -28,7 +28,7 @@ class MyDataset(DGLDataset):
                                         verbose=verbose)
 
     def process(self):
-        local_feature_dict = extract_all_local_feature()
+        # local_feature_dict = extract_all_local_feature()
         global_graph_dict = extract_all_global_graph_feature()
         self.graphs = []
         self.labels = []
@@ -56,7 +56,7 @@ class MyDataset(DGLDataset):
             # print(graph.ndata['w'].size())
 
             self.graphs.append(graph)
-            self.labels.append(torch.tensor(int(local_feature_dict[sub_path][1])))
+            # self.labels.append(torch.tensor(int(local_feature_dict[sub_path][1])))
 
     def __getitem__(self, idx):
         return self.graphs[idx], self.labels[idx]

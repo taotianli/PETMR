@@ -86,7 +86,7 @@ def reading_brain_region(node_feats, knn: int):
         brain_data_torch = torch.from_numpy(brain_region_data)
         # ndata = feature
         if brain_region_data.shape[0] != 0:
-            knn_g = dgl.knn_graph(brain_data_torch, knn) #节点很多，应当适当增加节点数量
+            knn_g = dgl.knn_graph(brain_data_torch, knn) #节点很多，应当适当减少节点数量
             # knn_g.edata['w'] = torch.tensor(edata).float()
             # print(graph.edata['w'].size())
             # knn_g.ndata['w'] = torch.tensor(ndata[0:knn_g.num_nodes(), :]).float()
