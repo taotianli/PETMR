@@ -27,22 +27,20 @@ def loading_global_graph(root_path):
 
 def concat_graph(graph, feature):
     knn_g = dgl.knn_graph(feature, 5)
-    print(knn_g, graph.shape, feature.shape)
     knn_g.ndata['feat'] = feature
     return knn_g
 
 
 def extract_all_global_graph_feature(sub_root_path='D:/Down/Output/subjects/*', knn_node_num=5):
-    print("Starting loading global feature!")
+    print('Loading global graph data!')
     global_graph_dict = defaultdict(list)
-    for sub in glob.glob(sub_root_path):
-        print(sub)
-        global_feas = torch.from_numpy(loading_global_graph(sub))
+    for sub_path in glob.glob(sub_root_path):
+        global_feas = torch.from_numpy(loading_global_graph(sub_path))
         global_sturc = torch.topk(pairwise_squared_distance(global_feas).to(torch.float32),
                    knn_node_num, 1, largest=False).values
         global_graph = concat_graph(global_sturc, global_feas)
-        global_graph_dict[sub].append(global_feas)
-        global_graph_dict[sub].append(global_graph)
+        global_graph_dict[sub_path.split('\\')[1]].append(global_feas)
+        global_graph_dict[sub_path.split('\\')[1]].append(global_graph)
     return global_graph_dict
 
 
