@@ -5,6 +5,8 @@
 
 The whole project consists two parts: Clinica Surface Processing and Graph Neural Network construction (VGAE and GIN).
 
+##Model
+![model](model.png)
 
 
 ### Installing
