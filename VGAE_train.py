@@ -31,7 +31,7 @@ parser.add_argument('--datasrc', '-s', type=str, default='dgl',
                     help='Dataset download from dgl Dataset or website.')
 parser.add_argument('--dataset', '-d', type=str, default='cora', help='Dataset string.')
 parser.add_argument('--gpu_id', type=int, default=0, help='GPU id to use.')
-args = parser.parse_args()
+args = parser.parse_known_args()
 
 
 # check device
